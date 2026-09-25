@@ -52,7 +52,7 @@ int main(){
             }
             pushOperand(number);
         }
-        else{
+        else if(exp[i]=='+'||exp[i]=='-'||exp[i]=='*'||exp[i]=='/'){
             if(operatorTop==-1||precedence(peekOperator())<precedence(exp[i])){
                 pushOperator(exp[i]);
                 i++;
@@ -72,7 +72,7 @@ int main(){
                         case '*': pushOperand(a*b);
                                   break;
                         case '/': if(a==0){
-                                    printf("Error");
+                                    printf("Error: Division by zero");
                                     return 0;
                                   }
                                   pushOperand(b/a);
@@ -82,6 +82,10 @@ int main(){
                 pushOperator(exp[i]);
                 i++;
             }
+        }
+        else{
+            printf("Error: Invalid expression");
+            return 0;
         }
 
     }
