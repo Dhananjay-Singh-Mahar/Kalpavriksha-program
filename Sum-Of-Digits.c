@@ -16,6 +16,6 @@ int main() {
     }
     
     printf("%d",sumOfDigits);
-…    return 0;
+    return 0;
     
 }
