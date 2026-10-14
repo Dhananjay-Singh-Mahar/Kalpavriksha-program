@@ -10,9 +10,9 @@ int main(){
     int numberOfTickets=0;
     int ticketCategoryChoice;
     char ticketCategory[20];
-    int subTotal=0;
-    int discount=0;
-    int finalBill=0;
+    float subTotal=0;
+    float discount=0;
+    float finalBill=0;
 
     printf("Enter Customer Name: ");
     scanf("%49[^\n]", name);
@@ -51,7 +51,7 @@ int main(){
     printf("Customer: %s\n", name);
     printf("Ticket Category: %s\n", ticketCategory);
     printf("Tickets: %d\n", numberOfTickets);
-    printf("Subtotal: %d\n", subTotal);
-    printf("Discount: %d\n", discount);
-    printf("Final Bill: %d\n", finalBill);
+    printf("Subtotal: %.2lf\n", subTotal);
+    printf("Discount: %.2lf\n", discount);
+    printf("Final Bill: %.2lf\n", finalBill);
 }
