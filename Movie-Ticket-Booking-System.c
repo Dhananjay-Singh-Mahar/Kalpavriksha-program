@@ -54,4 +54,6 @@ int main(){
     printf("Subtotal: %d\n", subTotal);
     printf("Discount: %.2lf\n", discount);
     printf("Final Bill: %.2lf\n", finalBill);
+    return 0;
+
 }
