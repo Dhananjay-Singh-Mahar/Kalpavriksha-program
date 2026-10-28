@@ -76,5 +76,5 @@ int main(){
     smoothingFilter(size,arr);
     printf("Smmothing Filter applied: \n");
     printMatrix(size,arr);
-
 }
+
