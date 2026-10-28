@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void generateRandomMatrix(int size, int arr[][size]){
     for(int i=0; i < size; i++){
         for(int j=0; j < size; j++){
-            scanf("%d", &arr[i][j]);
+            *(*(arr + i) + j) = rand()%255;
         }
     }
 }
@@ -12,16 +13,16 @@ void generateRandomMatrix(int size, int arr[][size]){
 void rotateMatrix(int size, int arr[][size]) {
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
-            int temp = arr[i][j];
-            arr[i][j] = arr[j][i];
-            arr[j][i] = temp;
+            int temp = *(*(arr + i) + j);
+            *(*(arr + i) + j) = *(*(arr + j) + i);
+            *(*(arr + j) + i) = temp;
         }
     }
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size / 2; j++) {
-            int temp = arr[i][j];
-            arr[i][j] = arr[i][size - 1 - j];
-            arr[i][size - 1 - j] = temp;
+            int temp = *(*(arr + i) + j);
+            *(*(arr + i) + j) = *(*(arr + i) + size - 1 - j);
+            *(*(arr + i) + size - 1 - j) = temp;
         }
     }
 }
@@ -30,7 +31,7 @@ void rotateMatrix(int size, int arr[][size]) {
 void printMatrix(int size, int arr[][size]){
     for(int i=0; i < size; i++){
         for(int j=0; j < size; j++){
-            printf("%d ", arr[i][j]);
+            printf("%3d ", *(*(arr + i) + j));
         }
         printf("\n");
     }
@@ -40,7 +41,7 @@ void smoothingFilter(int size, int arr[][size]){
     int copy[size][size];
     for(int i=0; i < size; i++){
         for(int j=0; j < size; j++){
-            copy[i][j]=arr[i][j];
+            *(*(copy + i) + j)=*(*(arr + i) + j);
         }
     }
     for(int i=0; i < size; i++){
@@ -51,12 +52,12 @@ void smoothingFilter(int size, int arr[][size]){
                for (int y = j - 1; y <= j + 1; y++){
                     if (x >= 0 && x < size &&
                         y >= 0 && y < size){
-                        sum += copy[x][y];
+                        sum += *(*(arr + x) + y);
                         count++;
                     }
                 }
             }
-            arr[i][j] = sum/count;
+            *(*(arr + i) + j) = sum/count;
         }
     }
 }
@@ -73,6 +74,7 @@ int main(){
     printf("Rotated Matrix: \n");
     printMatrix(size,arr);
     smoothingFilter(size,arr);
-    printf("Smmothing Filter applied: ");
+    printf("Smmothing Filter applied: \n");
     printMatrix(size,arr);
+
 }
