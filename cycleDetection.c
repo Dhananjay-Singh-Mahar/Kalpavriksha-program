@@ -23,3 +23,4 @@ bool has_cycle(Node *head) {
 
     return false;
 }
+
